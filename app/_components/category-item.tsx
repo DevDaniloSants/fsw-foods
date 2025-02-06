@@ -14,7 +14,7 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
         width={30}
         height={30}
       />
-      <span className="text-sm">{category.name}</span>
+      <span className="text-sm font-semibold">{category.name}</span>
     </div>
   );
 };
