@@ -1,0 +1,47 @@
+import Image from "next/image";
+import { GetProductsWithDiscountPercentageDTO } from "../_data-acess/product/get-products-with-dicount-percentage";
+import { formatCurrency } from "../_helpers/formatCurrency";
+import { calculateProductTotalPrice } from "../_helpers/price";
+import { Badge } from "./ui/badge";
+import { ArrowDownIcon } from "lucide-react";
+
+interface ProductItemProps {
+  product: GetProductsWithDiscountPercentageDTO;
+}
+
+const ProductItem = ({ product }: ProductItemProps) => {
+  return (
+    <div className="min-w-[150px] space-y-2">
+      <div className="relative h-[150px] w-full">
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          fill
+          className="rounded-lg object-cover"
+        />
+        <Badge className="absolute left-2 top-2 gap-[2px] px-[2px] py-[2px]">
+          <ArrowDownIcon size={12} />
+          <span>{product.discountPercentage} %</span>
+        </Badge>
+      </div>
+      <div>
+        <h2 className="w-full truncate text-sm">{product.name}</h2>
+        <div className="flex items-center gap-1">
+          <h3 className="font-semibold">
+            {calculateProductTotalPrice(product)}
+          </h3>
+          {product.discountPercentage > 0 && (
+            <span className="text-xs text-muted-foreground line-through">
+              {formatCurrency(product.price)}
+            </span>
+          )}
+        </div>
+        <span className="block text-xs text-muted-foreground">
+          {product.restaurant.name}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default ProductItem;
