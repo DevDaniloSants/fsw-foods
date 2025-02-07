@@ -5,8 +5,11 @@ import Search from "./_components/search";
 import ProductList from "./_components/product-list";
 import { Button } from "./_components/ui/button";
 import { ChevronRight } from "lucide-react";
+import { getProductsWithDiscountPercentage } from "./_data-acess/product/get-products-with-dicount-percentage";
 
-const Home = () => {
+const Home = async () => {
+  const productsWithDiscountPercentage =
+    await getProductsWithDiscountPercentage();
   return (
     <>
       <Header />
@@ -37,7 +40,7 @@ const Home = () => {
             <ChevronRight />
           </Button>
         </div>
-        <ProductList />
+        <ProductList products={productsWithDiscountPercentage} />
       </div>
     </>
   );

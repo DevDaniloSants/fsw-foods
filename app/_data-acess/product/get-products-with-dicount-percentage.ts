@@ -3,8 +3,7 @@
 import { db } from "@/app/_lib/prisma";
 import { Product } from "@prisma/client";
 
-export interface GetProductsWithDiscountPercentageDTO
-  extends Omit<Product, "price"> {
+export interface GetProductsDTO extends Omit<Product, "price"> {
   price: number;
   restaurant: {
     name: string;
@@ -12,7 +11,7 @@ export interface GetProductsWithDiscountPercentageDTO
 }
 
 export const getProductsWithDiscountPercentage = async (): Promise<
-  GetProductsWithDiscountPercentageDTO[]
+  GetProductsDTO[]
 > => {
   const products = await db.product.findMany({
     where: {

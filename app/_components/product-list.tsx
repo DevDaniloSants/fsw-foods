@@ -1,8 +1,13 @@
-import { getProductsWithDiscountPercentage } from "../_data-acess/product/get-products-with-dicount-percentage";
+import { GetProductsDTO } from "../_data-acess/product/get-products-with-dicount-percentage";
 import ProductItem from "./product-item";
 
-const ProductList = async () => {
-  const products = await getProductsWithDiscountPercentage();
+interface ProductListProps {
+  products: GetProductsDTO[];
+}
+
+const ProductList = ({ products }: ProductListProps) => {
+  if (!products) return null;
+
   return (
     <div className="flex gap-4 overflow-x-auto px-5">
       {products.map((product) => (
