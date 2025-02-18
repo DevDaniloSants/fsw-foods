@@ -1,9 +1,7 @@
-import { GetProductsWithDiscountPercentageDTO } from "../_data-acess/product/get-products-with-dicount-percentage";
+import { GetProductsDTO } from "../_data-acess/product/get-products-with-dicount-percentage";
 import { formatCurrency } from "./formatCurrency";
 
-export const calculateProductTotalPrice = (
-  product: GetProductsWithDiscountPercentageDTO,
-) => {
+export const calculateProductTotalPrice = (product: GetProductsDTO) => {
   if (product.discountPercentage === 0) {
     return product.price;
   }
