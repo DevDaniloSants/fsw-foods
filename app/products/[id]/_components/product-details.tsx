@@ -35,7 +35,7 @@ const ProductDetails = ({
   const handleIncreaseQuantity = () => setQuantity((prev) => prev + 1);
 
   return (
-    <>
+    <div className="relative z-50 mt-[-16px] rounded-t-3xl bg-white">
       <div className="p-5">
         <div className="flex items-center gap-1">
           <div className="relative h-5 w-5">
@@ -118,7 +118,7 @@ const ProductDetails = ({
         <h3 className="px-5 font-semibold">{product.category.name}</h3>
         <ProductList products={complementaryProducts} />
       </div>
-    </>
+    </div>
   );
 };
 
